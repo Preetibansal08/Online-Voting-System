@@ -1,38 +1,38 @@
 const mongoose = require('mongoose');
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
-// Define the Candidate schema
+// Define the Person schema
 const candidateSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    party:{
-        type:String,
-        reruired:true
-    },
-    age:{
-        type:Number,
+    party: {
+        type: String,
         required: true
     },
-    votes:[
+    age: {
+        type: Number,
+        required: true
+    },
+    votes: [
         {
-            user:{
+            user: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref:'User',
-                require: true,
+                ref: 'User',
+                required: true
             },
-            votedAt:{
+            votedAt: {
                 type: Date,
                 default: Date.now()
             }
         }
     ],
-    voteCount:{
+    voteCount: {
         type: Number,
         default: 0
     }
 });
 
-const Candidate = mongoose.model('User' , candidateSchema);
+const Candidate = mongoose.model('Candidate', candidateSchema);
 module.exports = Candidate;
